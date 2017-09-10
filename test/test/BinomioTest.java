@@ -1,3 +1,4 @@
+package test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,12 +32,12 @@ public class BinomioTest {
 	@Test
 	public void queResuelvaBinomioEstatico() {
 
-		Assert.assertTrue(BinomioNewton.resolverBinomio(4, -2, 2)==4);
+		Assert.assertTrue(BinomioNewton.resolverBinomio(3, 5, 2,1)==64);
 	}
 	
 	@Test
 	public void queMuestreElBinomio() {
 		String resultado = "+16.0X2-16.0X1+4.0X0";
-		Assert.assertEquals(resultado, binomio.mostrarBinomio());
+		Assert.assertEquals(resultado, binomio.mostrarBinomioResuelto());
 	}
 }

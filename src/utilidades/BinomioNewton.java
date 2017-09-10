@@ -20,14 +20,14 @@ public class BinomioNewton {
 			
 	}
 	
-	public String mostrarBinomio() {
+	public String mostrarBinomioResuelto() {
 		
 		StringBuffer sb = new StringBuffer();
 		int [] terminos = obtenerTerminosTarta(this.getGrado() +1);
 		double temporal;
 		for(int i = 0, j = this.getGrado(); i <= this.getGrado() ; j--,i ++) {
 			
-			temporal = terminos[i]*Math.pow(this.getCoeficienteA(), j)*Math.pow(this.getCoeficienteB(),i);
+			temporal = terminos[i]*Math.pow(this.getX(), j)*Math.pow(this.getB(),i);
 			if(temporal > 0)
 			sb.append("+");
 			sb.append(temporal);
@@ -44,7 +44,7 @@ public class BinomioNewton {
 		int[] terminos = new int[this.getGrado()];
 		terminos = obtenerTerminosTarta(this.getGrado()+1);
 		for (int i = this.getGrado(), j =0; i >= 0; i--, j++) {
-			retorno += terminos[j]* Math.pow(this.coeficienteA, i) * Math.pow(this.coeficienteB, j);
+			retorno += terminos[j]* Math.pow(this.x, i) * Math.pow(this.b, j);
 		}
 		
 
@@ -52,46 +52,33 @@ public class BinomioNewton {
 	}
 	
 	//METODO DE CLASE
-	public static double resolverBinomio(double coeficienteX, double coeficienteY, int grado) {
+	public static double resolverBinomio(double x, double b, int grado,double valor) {
 		
 		double retorno = 0;
 		int[] terminos = new int[grado];
 		
 		terminos = obtenerTerminosTarta(grado+1);
-		for (int i = grado, j =0; i >= 0; i--, j++) {
-			retorno += terminos[j]* Math.pow(coeficienteX, i) * Math.pow(coeficienteY, j);
-		}
+		for (int i = grado, j =0; i >= 0; i--, j++) 
+			retorno += terminos[j] * Math.pow(valor*x, i) * Math.pow(b, j);
+		
 		
 
 		return retorno;
 	}
 	
-	public BinomioNewton(int grado, double coeficienteA, double coeficienteB) {
+	public BinomioNewton(int grado, double x, double b) {
 		super();
 		this.grado = grado;
-		this.coeficienteA = coeficienteA;
-		this.coeficienteB = coeficienteB;
+		this.x = x;
+		this.b = b;
 	}
 	public BinomioNewton(int grado) {
 		super();
 		this.grado = grado;
-		this.coeficienteA = this.coeficienteB = 1;
+		this.x = this.b = 0;
 	}
 	
-	public BinomioNewton(int grado, double coeficiente, boolean esX) {
-		super();
-		this.grado = grado;
 
-
-		if(esX){
-			this.coeficienteA = coeficiente;
-			this.coeficienteB = 0;
-		}else {
-			this.coeficienteB = coeficiente;
-			this.coeficienteA = 0;
-		}
-		
-	}
 	
 
 	
@@ -106,23 +93,23 @@ public class BinomioNewton {
 	public void setGrado(int grado) {
 		this.grado = grado;
 	}
-	public double getCoeficienteA() {
-		return coeficienteA;
+	public double getX() {
+		return x;
 	}
-	public void setCoeficienteA(double coeficienteA) {
-		this.coeficienteA = coeficienteA;
+	public void setX(double coeficienteA) {
+		this.x = coeficienteA;
 	}
-	public double getCoeficienteB() {
-		return coeficienteB;
+	public double getB() {
+		return b;
 	}
-	public void setCoeficienteB(double coeficienteB) {
-		this.coeficienteB = coeficienteB;
+	public void setB(double coeficienteB) {
+		this.b = coeficienteB;
 	}
 	
 	
 	private int grado;
-	private double coeficienteA;
-	private double coeficienteB;
+	private double x;
+	private double b;
 	
 	
 }
