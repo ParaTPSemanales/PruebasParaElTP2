@@ -2,7 +2,7 @@ package utilidades;
 
 public class BinomioNewton {
 
-	public int[] obtenerTerminos(int nivel) {
+	public static int[] obtenerTerminosTarta(int nivel) {
 		
 		int[] resultado = new int[nivel];
 		int[][] tartaglia = new int[nivel][nivel];
@@ -23,7 +23,7 @@ public class BinomioNewton {
 	public String mostrarBinomio() {
 		
 		StringBuffer sb = new StringBuffer();
-		int [] terminos = this.obtenerTerminos(this.getGrado() +1);
+		int [] terminos = obtenerTerminosTarta(this.getGrado() +1);
 		double temporal;
 		for(int i = 0, j = this.getGrado(); i <= this.getGrado() ; j--,i ++) {
 			
@@ -38,11 +38,11 @@ public class BinomioNewton {
 		return sb.toString();
 	}
 	
-	public double resolverBinomio() {
+	public  double resolverBinomio() {
 		
 		double retorno = 0;
 		int[] terminos = new int[this.getGrado()];
-		terminos = this.obtenerTerminos(this.getGrado()+1);
+		terminos = obtenerTerminosTarta(this.getGrado()+1);
 		for (int i = this.getGrado(), j =0; i >= 0; i--, j++) {
 			retorno += terminos[j]* Math.pow(this.coeficienteA, i) * Math.pow(this.coeficienteB, j);
 		}
@@ -51,6 +51,20 @@ public class BinomioNewton {
 		return retorno;
 	}
 	
+	//METODO DE CLASE
+	public static double resolverBinomio(double coeficienteX, double coeficienteY, int grado) {
+		
+		double retorno = 0;
+		int[] terminos = new int[grado];
+		
+		terminos = obtenerTerminosTarta(grado+1);
+		for (int i = grado, j =0; i >= 0; i--, j++) {
+			retorno += terminos[j]* Math.pow(coeficienteX, i) * Math.pow(coeficienteY, j);
+		}
+		
+
+		return retorno;
+	}
 	
 	public BinomioNewton(int grado, double coeficienteA, double coeficienteB) {
 		super();

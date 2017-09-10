@@ -13,10 +13,10 @@ public class BinomioTest {
 	}
 
 	@Test
-	public void queObtengaLosTerminos() {
+	public void queObtengaLosTerminosConTartaglia() {
 		int[]resultado = new int[binomio.getGrado()];
 		int[]esperado = {1,2,1};
-		resultado = binomio.obtenerTerminos(binomio.getGrado()+1);
+		resultado = BinomioNewton.obtenerTerminosTarta(binomio.getGrado() + 1);
 		
 		Assert.assertArrayEquals(esperado, resultado);
 	}
@@ -26,6 +26,12 @@ public class BinomioTest {
 	public void queResuelvaBinomio() {
 		
 		Assert.assertTrue(binomio.resolverBinomio()==4);
+	}
+	
+	@Test
+	public void queResuelvaBinomioEstatico() {
+
+		Assert.assertTrue(BinomioNewton.resolverBinomio(4, -2, 2)==4);
 	}
 	
 	@Test
