@@ -20,6 +20,23 @@ public class BinomioNewton {
 			
 	}
 	
+	public String mostrarBinomio() {
+		
+		StringBuffer sb = new StringBuffer();
+		int [] terminos = this.obtenerTerminos(this.getGrado() +1);
+		double temporal;
+		for(int i = 0, j = this.getGrado(); i <= this.getGrado() ; j--,i ++) {
+			
+			temporal = terminos[i]*Math.pow(this.getCoeficienteA(), j)*Math.pow(this.getCoeficienteB(),i);
+			if(temporal > 0)
+			sb.append("+");
+			sb.append(temporal);
+			sb.append("X");
+			sb.append(j);
+			
+		}
+		return sb.toString();
+	}
 	
 	public double resolverBinomio() {
 		
