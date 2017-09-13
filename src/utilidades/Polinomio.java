@@ -3,37 +3,78 @@ package utilidades;
 
 public class Polinomio {
 	
-	public void evaluarProgDinamica() {
+	public double evaluarProgDinamica(double x) {
+		double retorno = 0;
 		
-		///FALTA RESOLVER
-	}
-	
-	
+		double potencia = 1;
 		
-	
-	public double resolverPolinomio(double x) {
-		
-	double retorno = 0;
-		
-		for (int i = 1; i <= this.getGrado(); i++) 
-			retorno += this.getCoeficientes()[i-1]*evaluarRecursiva(x, this.getGrado() - i );
+		for (int i = this.getGrado(); i >= 0; i--) {
+			retorno += this.getCoeficientes()[i]*potencia;
+			potencia *= x; //O(1)
+		}//O(n)
 		
 		return retorno;
 	}
 	
-	public double evaluarHorner(double numero) {
+	
+	public double evaluarMSucesivas(double x) {
 		
-		double [] auxiliar =new double[this.getGrado()-1];
+	double retorno = 0;
 		
-		auxiliar[this.getGrado()-1] = this.getCoeficientes()[this.getGrado()-1];
-		for (int i = this.getGrado()-1; i >= 0; i--) {
-			auxiliar[i] = this.getCoeficientes()[i]  + auxiliar[i+1] * numero;
-		}
+		for (int i = 0; i <= this.getGrado(); i++) 
+			retorno += this.getCoeficientes()[i]*potenciaPorMult(x, this.getGrado() - i );//O(n2)
 		
-		return auxiliar[0];
+		return retorno;
 	}
 	
-	public double evaluarMSucesivas(double numero, int potencia){
+	public double evaluarRecursiva(double x) {
+		
+	double retorno = 0;
+		
+		for (int i = 0; i <= this.getGrado(); i++) 
+			retorno += this.getCoeficientes()[i]*potenciaRecursiva(x, this.getGrado() - i );
+		
+		return retorno;
+	}
+	
+	public double evaluarHorner(double x) {
+		double retorno = 0;
+		
+		retorno = this.getCoeficientes()[0]*x + this.getCoeficientes()[1];
+		
+		for (int i = 2; i <= this.getGrado(); i++) 
+			retorno = (retorno*x) + this.getCoeficientes()[i];
+		
+
+		return retorno;
+	}
+	
+	
+	public double evaluarRecursivaPar(double x){
+	double retorno = 0;
+		
+		for (int i = 0; i <= this.getGrado(); i++) 
+		{
+			if(i % 2 != 0)
+				retorno += this.getCoeficientes()[i]*potenciaRecursiva(x, this.getGrado() - i );//Impar
+			else
+				retorno += this.getCoeficientes()[i]*potenciaRecursivaPar(x, this.getGrado() - i );//Par
+		}
+			
+		
+		return retorno;
+	}
+	
+	
+	public double evaluarPow(double x){
+		
+		double retorno = 0;
+		for(int i = 0; i <= this.getGrado(); i ++)
+			retorno += this.getCoeficientes()[i]* Math.pow(x,this.getGrado()-i);
+			
+	return retorno;
+	}
+	public double potenciaPorMult(double numero, int potencia){
 		
 		double retorno = 1;
 		
@@ -44,15 +85,23 @@ public class Polinomio {
 		return retorno;
 	} 
 	
-	public double evaluarRecursiva(double numero, int potencia) {
+	public double potenciaRecursiva(double numero, int potencia) {
 		
 		if(potencia == 0)
 			return 1;
 		else
-			return numero*evaluarRecursiva(numero, potencia -1);
+			return numero*potenciaRecursiva(numero, potencia -1);
 	}
 	
+	public double potenciaRecursivaPar(double numero, int potencia) {
+		
+		if(potencia == 0)
+			return 1;
+		else
+			return numero*potenciaRecursiva(numero*numero, potencia /2);
+	}
 	
+
 	
 	public Polinomio(int grado){
 		
