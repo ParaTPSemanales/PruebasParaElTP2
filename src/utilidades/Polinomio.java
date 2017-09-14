@@ -16,6 +16,15 @@ public class Polinomio {
 		return retorno;
 	}
 	
+	public double evaluarMejorada(double x) {
+		
+		double resultado = 0;
+		int i, j ;
+		for ( i = this.getGrado(), j = 1 ; i >= 0 ; i--, j*=x) 
+		 resultado += this.getCoeficientes()[i]*(j);
+		
+		return resultado;
+	}
 	
 	public double evaluarMSucesivas(double x) {
 		
@@ -25,7 +34,7 @@ public class Polinomio {
 			retorno += this.getCoeficientes()[i]*potenciaPorMult(x, this.getGrado() - i );//O(n2)
 		
 		return retorno;
-	}
+	}//O(n2)
 	
 	public double evaluarRecursiva(double x) {
 		
@@ -35,19 +44,19 @@ public class Polinomio {
 			retorno += this.getCoeficientes()[i]*potenciaRecursiva(x, this.getGrado() - i );
 		
 		return retorno;
-	}
+	}//O(n2) Debido a que la  recursividad es lineal y anidada al for.
 	
 	public double evaluarHorner(double x) {
 		double retorno = 0;
 		
-		retorno = this.getCoeficientes()[0]*x + this.getCoeficientes()[1];
+		retorno = this.getCoeficientes()[0]*x + this.getCoeficientes()[1]; //O(1)
 		
 		for (int i = 2; i <= this.getGrado(); i++) 
-			retorno = (retorno*x) + this.getCoeficientes()[i];
+			retorno = (retorno*x) + this.getCoeficientes()[i];//O(n-2) = O(n)
 		
 
 		return retorno;
-	}
+	} //O(n)
 	
 	
 	public double evaluarRecursivaPar(double x){
@@ -59,7 +68,7 @@ public class Polinomio {
 				retorno += this.getCoeficientes()[i]*potenciaRecursiva(x, this.getGrado() - i );//Impar
 			else
 				retorno += this.getCoeficientes()[i]*potenciaRecursivaPar(x, this.getGrado() - i );//Par
-		}
+		}//O(n) y anidada con la recursiva es O(n2)
 			
 		
 		return retorno;

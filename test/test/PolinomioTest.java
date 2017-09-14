@@ -30,7 +30,7 @@ public class PolinomioTest {
 	}
 
 	@Test
-	public void evaluarMSucesiva() {
+	public void queEvalueConMSucesivaT() {
 		double[] coef = {3,1,5};
 		Polinomio otroPolinomio = new Polinomio(2,coef);
     
@@ -38,7 +38,7 @@ public class PolinomioTest {
 	}
 	
 	@Test
-	public void evaluarRecursiva() {
+	public void queEvalueDeFormaRecursiva() {
 		double[] coef = {3,1,5};
 		Polinomio otroPolinomio = new Polinomio(2,coef);
     
@@ -46,7 +46,7 @@ public class PolinomioTest {
 	}
 	
 	@Test
-	public void evaluarRecursivaPar() {
+	public void queEvalueRecursivaPar() {
 		double[] coef = {3,1};
 		Polinomio otroPolinomio = new Polinomio(1,coef);
     
@@ -54,7 +54,7 @@ public class PolinomioTest {
 	}
 	
 	@Test
-	public void evaluarHorner() {
+	public void queEvalueConHorner() {
 		double[] coef = {3,1};
 		Polinomio otroPolinomio = new Polinomio(1,coef);
     
@@ -62,7 +62,7 @@ public class PolinomioTest {
 	}
 	
 	@Test
-	public void evaluarPow(){
+	public void queEvalueUsandoPow(){
 		double[] coef = {3,1};
 		Polinomio otroPolinomio = new Polinomio(1,coef);
     
@@ -70,11 +70,23 @@ public class PolinomioTest {
 	}
 	
 	@Test
-	public  void evaluarProgDinamica(){
+	public  void queEvalueProgDinamica(){
 		double[] coef = {3,1,-7};
 		Polinomio otroPolinomio = new Polinomio(2,coef);
     
 		Assert.assertTrue(otroPolinomio.evaluarProgDinamica(12) == 437);
+		
+	}
+	
+	@Test
+	
+	public void queEvalueMejorada() {
+	
+		double[] coef = {3,1,-7};
+		Polinomio otroPolinomio = new Polinomio(2,coef);
+    
+		Assert.assertTrue(otroPolinomio.evaluarMejorada(12) == 437);
+		
 		
 	}
 }

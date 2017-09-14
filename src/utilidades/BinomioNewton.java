@@ -2,28 +2,33 @@ package utilidades;
 
 public class BinomioNewton {
 
-	public static int[] obtenerTerminosTarta(int nivel) {
+	public int[] obtenerTerminosTarta(int nivel) {
 		
-		int[] resultado = new int[nivel];
-		int[][] tartaglia = new int[nivel][nivel];
+		
+		//Si ya esta calculado, entonces lo devuelvo
+		if(tartaglia[nivel-1][0] != 0)
+			return tartaglia[nivel-1];
 		
 	    for(int i = 0 ; i < nivel; i++)
-	    {
-	        tartaglia[i][0] = 1;
-	        for(int j= 1 ; j  <= i ; j++)
-	                tartaglia[i][j]  = tartaglia[i-1][j-1]+ tartaglia[i-1][j];
+	    {    
+	    	// SI el nivel esta calculado, entonces lo paso.
+	    
+	        if(tartaglia[i][0] == 0){
+	        	tartaglia[i][0] = 1;
+	        	 for(int j= 1 ; j  <= i ; j++)
+	        		  tartaglia[i][j]  = tartaglia[i-1][j-1]+ tartaglia[i-1][j];
+	        }
+	       
 	    }
-		for (int i = 0; i < tartaglia[nivel -1].length; i++) {
-			resultado[i] = tartaglia[nivel -1][i];
-		}
-		return resultado;
+		
+		return tartaglia[nivel-1];
 			
 	}
 	
 	public String mostrarBinomioResuelto() {
 		
 		StringBuffer sb = new StringBuffer();
-		int [] terminos = obtenerTerminosTarta(this.getGrado() +1);
+		int [] terminos = obtenerTerminosTarta(this.getGrado()+1);// ACa es mas uno porque la cantidad de terminos es  igual al nivel +1
 		double temporal;
 		for(int i = 0, j = this.getGrado(); i <= this.getGrado() ; j--,i ++) {
 			
@@ -39,10 +44,10 @@ public class BinomioNewton {
 	}
 	
 	public  double resolverBinomio() {
-		
+		//Resuelve con metodo POW y 
 		double retorno = 0;
-		int[] terminos = new int[this.getGrado()];
-		terminos = obtenerTerminosTarta(this.getGrado()+1);
+		int[] terminos = new int[this.getGrado()+1];
+		terminos = obtenerTerminosTarta(this.getGrado() +1);
 		for (int i = this.getGrado(), j =0; i >= 0; i--, j++) {
 			retorno += terminos[j]* Math.pow(this.x, i) * Math.pow(this.b, j);
 		}
@@ -51,16 +56,21 @@ public class BinomioNewton {
 		return retorno;
 	}
 	
-	//METODO DE CLASE
-	public static double resolverBinomio(double x, double b, int grado,double valor) {
+	//METODO 
+	public  double resolverBinomio( final double x, final double b, final int grado,double valor) {
 		
 		double retorno = 0;
 		int[] terminos = new int[grado];
-		
+		double auxX = Math.pow(x, grado);
+		double auxB = 1;
 		terminos = obtenerTerminosTarta(grado+1);
-		for (int i = grado, j =0; i >= 0; i--, j++) 
-			retorno += terminos[j] * Math.pow(valor*x, i) * Math.pow(b, j);
 		
+		for (int i = grado, j =1; i >= 0; i--, j++) {
+			retorno += terminos[j-1] * (valor*auxX) * auxB;
+			auxX/=x;
+			auxB*=b;
+		}
+			
 		
 
 		return retorno;
@@ -71,15 +81,23 @@ public class BinomioNewton {
 		this.grado = grado;
 		this.x = x;
 		this.b = b;
+		this.tartaglia = new int[grado+1][grado+1];
+		
 	}
+	
+	
+	
+// CONSTRUCTORES
+	
+	
 	public BinomioNewton(int grado) {
 		super();
 		this.grado = grado;
 		this.x = this.b = 0;
+		//para utilizar con tartaglia memorizado
+		tartaglia = new int[grado+1][grado+1];
+		
 	}
-	
-
-	
 
 	
 	public BinomioNewton() {
@@ -107,9 +125,18 @@ public class BinomioNewton {
 	}
 	
 	
+	public int[][] tartaglia() {
+		return tartaglia;
+	}
+
+	public void setTartaglia(int[][] tartaglia) {
+		this.tartaglia = tartaglia;
+	}
+
+
 	private int grado;
 	private double x;
 	private double b;
-	
+	private int[][] tartaglia ;
 	
 }
