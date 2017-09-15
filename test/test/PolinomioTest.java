@@ -90,4 +90,13 @@ public class PolinomioTest {
 		
 	}
 	
+	@Test
+	public void queLeaPolinomioDeArchivo(){
+		String casoDePrueba = "02_polinomioGrado2";
+		Polinomio  otroPolinomio = new Polinomio("PreparacionDePrueba/LoteDePrueba/Entrada/" + casoDePrueba + ".in");
+		double[] coef = {3,1,5};
+		Polinomio auxPolinomio = new Polinomio(2,coef);
+		Assert.assertTrue(otroPolinomio.equals(auxPolinomio));
+	}
+	
 }

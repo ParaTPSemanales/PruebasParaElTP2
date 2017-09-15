@@ -142,6 +142,7 @@ public class Polinomio {
 	}
 	
 	// Crea un Polinomio desde un archivo de entrada
+	// No lee el valor de x del archivo
 	public Polinomio(final String path) {
 		File file = null;
 		FileReader fileReader = null;

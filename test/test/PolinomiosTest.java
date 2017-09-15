@@ -6,6 +6,8 @@ import java.io.FileReader;
 
 import utilidades.Polinomio;
 
+// Clase que se utiliza para crear un polinomio y guardar el valor de x
+// para luego poder usarlo en los test
 public class PolinomiosTest {
 	
 	public Polinomio polinomio;
