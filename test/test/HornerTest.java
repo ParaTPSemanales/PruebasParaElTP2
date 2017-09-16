@@ -4,7 +4,7 @@ import utilidades.Polinomio;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MSucesivasTest {
+public class HornerTest {
 
 
 
@@ -15,7 +15,7 @@ public class MSucesivasTest {
 		 
 		Polinomio  polinomioTest = new Polinomio(1,coeficientes);
 
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6)==93);
+		Assert.assertTrue(polinomioTest.evaluarHorner(6)==93);
 	}
 	
 	@Test
@@ -23,7 +23,7 @@ public class MSucesivasTest {
 		double[] coeficientes = {3,1,5};
 		Polinomio  polinomioTest = new Polinomio(2,coeficientes);
 
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(3)==35);
+		Assert.assertTrue(polinomioTest.evaluarHorner(3)==35);
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class MSucesivasTest {
 		double[] coeficientes = {8, 5, 8, 4};
 		Polinomio  polinomioTest = new Polinomio(3,coeficientes);
 
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6)==1960);
+		Assert.assertTrue(polinomioTest.evaluarHorner(6)==1960);
 	}
 	
 	@Test
@@ -40,11 +40,10 @@ public class MSucesivasTest {
 		Polinomio  polinomioTest = new Polinomio(20,coeficientes);
 		long start = System.nanoTime();
 		
-		
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(2)==7845136);
+		Assert.assertTrue(polinomioTest.evaluarHorner(2)==7845136);
 		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarMSucesivaGrado20: " + tiempo + " ns");
+		System.out.println("[PolinomioEvaluarMHornerGrado20: " + tiempo + " ns");
 	}
 	
 	@Test
@@ -52,7 +51,7 @@ public class MSucesivasTest {
 		double[] coeficientes = {15};
 		Polinomio  polinomioTest = new Polinomio(0,coeficientes);
 
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6666666)==15);
+		Assert.assertTrue(polinomioTest.evaluarHorner(6666666)==15);
 	}
 	
 	@Test
@@ -60,18 +59,20 @@ public class MSucesivasTest {
 		double[] coeficientes = {13,15,15};
 		Polinomio  polinomioTest = new Polinomio(2,coeficientes);
 
-	Assert.assertTrue(polinomioTest.evaluarMSucesivas(6.5)==661.75);
+	Assert.assertTrue(polinomioTest.evaluarHorner(6.5)==661.75);
 	}
+	
+	
 	@Test
 	public void queEvaluePolinomioGrado50() {
 		
 		double[] coeficientes = {1,2,3,4,5,6,4,3,2,1,3,4,6,7,8,9,7,6,5,44,33,2,1,2,3,4,55,66,7,88,76,6,55,44,3,2,1,2,3,-4,5,66,-1,-1,-77,-123,12,2,23,-1,21};
 		Polinomio  polinomioTest = new Polinomio(50,coeficientes);
 		long start = System.nanoTime();
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(-1) == 23);
+		Assert.assertTrue(polinomioTest.evaluarHorner(-1) == 23);
 		
 		long tiempo = System.nanoTime()- start;
-		System.out.println("[PolinomioEvaluarMSucesivaGrado50: " + tiempo + " ns");
+		System.out.println("[PolinomioEvaluarMHornerGrado50: " + tiempo + " ns");
 		
 	}
 	
@@ -81,11 +82,11 @@ public class MSucesivasTest {
 								1,2,3,4,5,6,4,3,2,1,3,4,6,7,8,9,7,6,5,44,33,2,1,2,3,4,55,66,7,88,76,6,55,44,3,2,1,2,3,-4,5,66,-1,-1,-77,-123,12,2,23};
 		Polinomio  polinomioTest = new Polinomio(99,coeficientes);
 		long start = System.nanoTime();
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(-1) == -22);
+		Assert.assertTrue(polinomioTest.evaluarHorner(-1) == -22);
 		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarMSucesivaGrado100: " + tiempo + " ns");
+		System.out.println("[PolinomioEvaluarMHornerGrado100: " + tiempo + " ns");
 		
 	}
-
+	
 }

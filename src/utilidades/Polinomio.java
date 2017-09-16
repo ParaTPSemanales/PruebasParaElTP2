@@ -25,7 +25,7 @@ public class Polinomio {
 	public double evaluarMejorada(double x) {
 
 		double resultado = 0;
-		int i, j;
+		int i; double j;
 		for (i = this.getGrado(), j = 1; i >= 0; i--, j *= x)
 			resultado += this.getCoeficientes()[i] * (j);
 
@@ -54,7 +54,10 @@ public class Polinomio {
 
 	public double evaluarHorner(double x) {
 		double retorno = 0;
-
+     
+		if(this.getGrado()==0)
+			return this.getCoeficientes()[0];
+		
 		retorno = this.getCoeficientes()[0] * x + this.getCoeficientes()[1]; // O(1)
 
 		for (int i = 2; i <= this.getGrado(); i++)
@@ -97,7 +100,7 @@ public class Polinomio {
 
 	public double potenciaRecursiva(double numero, int potencia) {
 
-		if (potencia == 0)
+		if (potencia ==	0)
 			return 1;
 		else
 			return numero * potenciaRecursiva(numero, potencia - 1);
@@ -108,7 +111,7 @@ public class Polinomio {
 		if (potencia == 0)
 			return 1;
 		else
-			return numero * potenciaRecursiva(numero * numero, potencia / 2);
+			return numero * potenciaRecursivaPar(numero * numero, potencia / 2);
 	}
 
 	public Polinomio(int grado) {
