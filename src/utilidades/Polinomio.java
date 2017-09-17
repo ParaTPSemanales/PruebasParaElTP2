@@ -110,8 +110,9 @@ public class Polinomio {
 
 		if (potencia == 0)
 			return 1;
-		else
-			return numero * potenciaRecursivaPar(numero * numero, potencia / 2);
+		if ((potencia % 2) == 0)
+			return potenciaRecursivaPar(numero * numero, potencia / 2); //Exponente Par		
+		return numero * potenciaRecursivaPar(numero, potencia - 1 );//Exponente Impar
 	}
 
 	public Polinomio(int grado) {
