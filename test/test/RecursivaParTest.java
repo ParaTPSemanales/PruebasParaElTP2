@@ -45,7 +45,7 @@ public class RecursivaParTest {
 		Assert.assertTrue(polinomioTest.evaluarRecursivaPar(2)==7845136);
 		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarMSucesivaGrado20: " + tiempo + " ns");
+		System.out.println("[PolinomioRecursivaParGrado20: " + tiempo + " ns");
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class RecursivaParTest {
 		Assert.assertTrue(polinomioTest.evaluarRecursivaPar(-1) == 23);
 		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarPowGrado50: " + tiempo + " ns");
+		System.out.println("[PolinomioRecursivaParGrado50: " + tiempo + " ns");
 		
 	}
 	
@@ -89,7 +89,7 @@ public class RecursivaParTest {
 		Assert.assertTrue(polinomioTest.evaluarRecursivaPar(-1) == -22);
 		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarMPowGrado100: " + tiempo + " ns");
+		System.out.println("[PolinomioRecursivaPar100: " + tiempo + " ns");
 		
 	}
 
