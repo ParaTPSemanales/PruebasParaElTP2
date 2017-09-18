@@ -15,12 +15,10 @@ public class BinomioTest {
 
 	@Test
 	public void queObtengaLosTerminosConTartaglia() {
-		int[]resultado = new int[binomio.getGrado()+1];
-		int[]esperado = {1,2,1};
-		resultado = binomio.obtenerTerminosTarta(binomio.getGrado()+1);
-		
+		double[]resultado = new double[binomio.getGrado()+1];
+		double[]esperado = {1,2,1};
 		resultado  =binomio.obtenerTerminosTarta(binomio.getGrado() +1);
-		Assert.assertArrayEquals(esperado, resultado);
+		Assert.assertArrayEquals(esperado, resultado, 0);
 	}
 	
 	
@@ -41,4 +39,5 @@ public class BinomioTest {
 		String resultado = "+16.0X2-16.0X1+4.0X0";
 		Assert.assertEquals(resultado, binomio.mostrarBinomioResuelto());
 	}
+	
 }

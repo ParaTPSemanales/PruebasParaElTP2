@@ -1,8 +1,86 @@
 package utilidades;
 
 public class BinomioNewton {
+	/*
+	
+	public double evaluarProgDinamica(double x) {
+		double retorno = 0;
 
-	public int[] obtenerTerminosTarta(int nivel) {
+		double potencia = 1;
+
+		for (int i = this.getGrado(); i >= 0; i--) {
+			retorno += this.getCoeficientes()[i] * potencia;
+			potencia *= x; // O(1)
+		} // O(n)
+
+		return retorno;
+	}
+
+	public double evaluarMejorada(double x) {
+
+		double resultado = 0;
+		int i; double j;
+		for (i = this.getGrado(), j = 1; i >= 0; i--, j *= x)
+			resultado += this.getCoeficientes()[i] * (j);
+
+		return resultado;
+	}
+
+*/
+	
+	public double evaluarMSucesivas(double x) {
+
+		double retorno = 0;
+		retorno = potenciaPorMult((this.getX()*x)+this.getB(), this.getGrado());// O(n2)
+		return retorno;
+	}
+	
+	public double evaluarRecursiva(double x) {
+
+		double retorno = 0;
+		for (int i = 0; i <= this.getGrado(); i++)
+			retorno=potenciaRecursiva((this.getX()*x)+this.getB(), this.getGrado());
+
+		return retorno;
+	}
+	
+	/* FALTA HACER HORNER
+	public double evaluarHorner(double x) {
+		double retorno = 0;
+     
+		if(this.getGrado()==0)
+			return this.getCoeficientes()[0];
+		
+		retorno = this.getCoeficientes()[0] * x + this.getCoeficientes()[1]; // O(1)
+
+		for (int i = 2; i <= this.getGrado(); i++)
+			retorno = (retorno * x) + this.getCoeficientes()[i];// O(n-2) = O(n)
+
+		return retorno;
+	} 
+	
+	*/
+	public double evaluarRecursivaPar(double x) {
+		double retorno = 0;
+
+		for (int i = 0; i <= this.getGrado(); i++) {
+			if (i % 2 != 0)
+				retorno=potenciaRecursiva((this.getX()*x)+this.getB(), this.getGrado());// Impar
+			else
+				retorno =potenciaRecursivaPar((this.getX()*x)+this.getB(), this.getGrado());// Par
+		} // O(n) y anidada con la recursiva es O(n2)
+
+		return retorno;
+	}
+	
+	
+	public double evaluarPow(double x) {
+		double retorno = 0;
+		retorno = Math.pow((this.getX()*x)+this.getB(), this.getGrado());
+		return retorno;
+	}
+
+	public double[] obtenerTerminosTarta(int nivel) {
 		
 		
 		//Si ya esta calculado, entonces lo devuelvo
@@ -28,7 +106,7 @@ public class BinomioNewton {
 	public String mostrarBinomioResuelto() {
 		
 		StringBuffer sb = new StringBuffer();
-		int [] terminos = obtenerTerminosTarta(this.getGrado()+1);// ACa es mas uno porque la cantidad de terminos es  igual al nivel +1
+		double [] terminos = obtenerTerminosTarta(this.getGrado()+1);// ACa es mas uno porque la cantidad de terminos es  igual al nivel +1
 		double temporal;
 		for(int i = 0, j = this.getGrado(); i <= this.getGrado() ; j--,i ++) {
 			
@@ -46,7 +124,7 @@ public class BinomioNewton {
 	public  double resolverBinomio() {
 		//Resuelve con metodo POW y 
 		double retorno = 0;
-		int[] terminos = new int[this.getGrado()+1];
+		double[] terminos = new double[this.getGrado()+1];
 		terminos = obtenerTerminosTarta(this.getGrado() +1);
 		for (int i = this.getGrado(), j =0; i >= 0; i--, j++) {
 			retorno += terminos[j]* Math.pow(this.x, i) * Math.pow(this.b, j);
@@ -60,7 +138,7 @@ public class BinomioNewton {
 	public  double resolverBinomio( final double x, final double b, final int grado,double valor) {
 		
 		double retorno = 0;
-		int[] terminos = new int[grado];
+		double[] terminos = new double[grado];
 		double auxX = Math.pow(x, grado);
 		double auxB = 1;
 		terminos = obtenerTerminosTarta(grado+1);
@@ -81,11 +159,36 @@ public class BinomioNewton {
 		this.grado = grado;
 		this.x = x;
 		this.b = b;
-		this.tartaglia = new int[grado+1][grado+1];
+		this.tartaglia = new double[grado+1][grado+1];
 		
 	}
 	
-	
+	public double potenciaPorMult(double numero, int potencia) {
+
+		double retorno = 1;
+
+		for (int i = potencia; i > 0; i--)
+			retorno *= numero;
+
+		return retorno;
+	}
+
+	public double potenciaRecursiva(double numero, int potencia) {
+
+		if (potencia ==	0)
+			return 1;
+		else
+			return numero * potenciaRecursiva(numero, potencia - 1);
+	}
+
+	public double potenciaRecursivaPar(double numero, int potencia) {
+
+		if (potencia == 0)
+			return 1;
+		if ((potencia % 2) == 0)
+			return potenciaRecursivaPar(numero * numero, potencia / 2); //Exponente Par		
+		return numero * potenciaRecursivaPar(numero, potencia - 1 );//Exponente Impar
+	}
 	
 // CONSTRUCTORES
 	
@@ -95,7 +198,7 @@ public class BinomioNewton {
 		this.grado = grado;
 		this.x = this.b = 0;
 		//para utilizar con tartaglia memorizado
-		tartaglia = new int[grado+1][grado+1];
+		tartaglia = new double[grado+1][grado+1];
 		
 	}
 
@@ -124,12 +227,11 @@ public class BinomioNewton {
 		this.b = coeficienteB;
 	}
 	
-	
-	public int[][] tartaglia() {
+	public double[][] tartaglia() {
 		return tartaglia;
 	}
 
-	public void setTartaglia(int[][] tartaglia) {
+	public void setTartaglia(double[][] tartaglia) {
 		this.tartaglia = tartaglia;
 	}
 
@@ -137,6 +239,6 @@ public class BinomioNewton {
 	private int grado;
 	private double x;
 	private double b;
-	private int[][] tartaglia ;
+	private double[][] tartaglia ;
 	
 }
