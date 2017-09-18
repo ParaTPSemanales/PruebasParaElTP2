@@ -29,7 +29,7 @@ public class BinomioNewton {
 
 	public double evaluarMSucesivas(double x) {
 		double retorno = 0;
-		retorno = potenciaPorMult((this.getX() * x) + this.getB(),this.getGrado());// O(n2)
+		retorno = potenciaPorMult((this.getX() * x) + this.getB(),this.getGrado());
 		return retorno;
 	}
 
