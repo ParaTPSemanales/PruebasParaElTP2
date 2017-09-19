@@ -60,12 +60,15 @@ public class BinomioNewton {
 		return retorno;
 	}
 	
-	//Falta
 	public double evaluarMejorada(double x) {
 		double retorno = this.getX()*x + this.getB();
 		double potencia = retorno;
-		for (int i = 1; i < this.getGrado(); i++) 
-		    retorno*= potencia;
+		for (int i = this.getGrado()/2; i > 1; i--)
+		    retorno *= potencia;
+		retorno *= retorno;		//Si el grado es par, calculo la mitad y luego elevo al cuadrado.
+		if(this.getGrado()%2 != 0){
+		   retorno *= potencia;
+		}
 		return retorno;
 	}
 	
