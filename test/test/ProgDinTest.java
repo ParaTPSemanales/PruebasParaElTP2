@@ -83,6 +83,7 @@ public class ProgDinTest {
 			System.out.println("[PolinomioEvaluarProgDinamicaGrado100: " + tiempo + " ns");
 	 }
 	
+	//TEST BINOMIO DE NEWTON
 	@Test
 	public void queEvalueBienBinomioGrado20(){
 		BinomioNewton binomioTest = new BinomioNewton(20,1,1);

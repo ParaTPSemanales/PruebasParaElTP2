@@ -60,6 +60,15 @@ public class BinomioNewton {
 		return retorno;
 	}
 	
+	//Falta
+	public double evaluarMejorada(double x) {
+		double retorno = this.getX()*x + this.getB();
+		double potencia = retorno;
+		for (int i = 1; i < this.getGrado(); i++) 
+		    retorno*= potencia;
+		return retorno;
+	}
+	
 	public double evaluarPow(double x) {
 		double retorno = 0;
 		retorno = Math.pow((this.getX() * x) + this.getB(), this.getGrado());

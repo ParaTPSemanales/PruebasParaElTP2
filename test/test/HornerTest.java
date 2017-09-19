@@ -10,20 +10,8 @@ import utilidades.BinomioNewton;
 public class HornerTest {
 
 	@Test
-	public void queResuelvaBinomio() {
-		BinomioNewton binomio = new BinomioNewton(2,4,-2);
-		Assert.assertTrue(binomio.resolverBinomio()==4);
-	}
-	
-	@Test
-	public void queResuelvaBinomioEstatico() {
-		BinomioNewton binomio = new BinomioNewton(2,4,-2);
-		Assert.assertTrue(binomio.resolverBinomio(3, 5, 2,1)==64);
-	}
-
-	@Test
 	public void queEvalueBienPolinomioGrado1(){		
-		 double[] coeficientes = {15,3};		 
+		double[] coeficientes = {15,3};		 
 		Polinomio  polinomioTest = new Polinomio(1,coeficientes);
 		Assert.assertTrue(polinomioTest.evaluarHorner(6)==93);
 	}
@@ -80,6 +68,7 @@ public class HornerTest {
 		System.out.println("[PolinomioEvaluarMHornerGrado100: " + tiempo + " ns");		
 	}
 	
+	//TEST BINOMIO DE NEWTON
 	@Test
 	public void queEvalueBienBinomioGrado20(){
 		BinomioNewton binomioTest = new BinomioNewton(20,1,1);
