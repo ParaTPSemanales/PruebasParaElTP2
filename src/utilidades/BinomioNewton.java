@@ -32,11 +32,32 @@ public class BinomioNewton {
 		retorno = potenciaPorMult((this.getX() * x) + this.getB(),this.getGrado());// O(n2)
 		return retorno;
 	}
+	
+	public double evaluarMSucesivasConDesarrollo(double x) {
+		double retorno = 0;
+		double[] coeficientes = new double[this.getGrado()+1];		
+		coeficientes = obtenerTerminosTarta(this.getGrado()+1);
+		for (int i = 0; i < coeficientes.length; i++)
+		retorno += (coeficientes[i]*potenciaPorMult(this.getX()*x, this.getGrado() -i) * potenciaPorMult(this.getB(),i));
+		return retorno;
+	}
 
 	public double evaluarRecursiva(double x) {
 		double retorno = 0;
 		for (int i = 0; i <= this.getGrado(); i++)
 			retorno = potenciaRecursiva((this.getX() * x) + this.getB(),this.getGrado());
+		return retorno;
+	}
+	
+	public double evaluarRecursivaConDesarrollo(double x) {
+		double retorno = 0;
+		double[] coeficientes = new double[this.getGrado()+1];		
+		coeficientes = obtenerTerminosTarta(this.getGrado()+1);
+		for (int i = 0; i <= this.getGrado(); i++){
+			double aux = potenciaRecursiva(x, this.getGrado() - i);
+			retorno += coeficientes[i] * aux;
+		}
+			
 		return retorno;
 	}
 	

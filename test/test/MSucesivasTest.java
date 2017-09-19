@@ -2,6 +2,7 @@ package test;
 
 import utilidades.BinomioNewton;
 import utilidades.Polinomio;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -100,5 +101,36 @@ public class MSucesivasTest {
 		Assert.assertTrue(binomioTest.evaluarMSucesivas(1)==406561177535215237.39727970756704);
 		long tiempo = System.nanoTime() - start; 
 		System.out.println("[BinomioEvaluarMSucesivaGrado100: " + tiempo + " ns");
+	}
+	
+	//TEST BINOMIO DE NEWTON DESARROLLANDO POLINOMIO
+	@Test
+	public void queEvalueBienBinomioGrado20ConDesarrolloDePolinomio(){
+		BinomioNewton binomioTest = new BinomioNewton(20,1,1);
+		long start = System.nanoTime();
+		Double resultado = Double.valueOf(1048576);
+		Assert.assertTrue(binomioTest.evaluarMSucesivasConDesarrollo(1)==resultado);		
+		long tiempo = System.nanoTime() - start;
+		System.out.println("[BinomioEvaluarMSucesivaGrado20ConDesarrollo: " + tiempo + " ns");
+	}	
+	
+	@Test
+	public void queEvalueBienBinomioGrado50ConDesarrolloDePolinomio(){
+		BinomioNewton binomioTest = new BinomioNewton(50,1,0.5);
+		long start = System.nanoTime();
+		Double resultado = Double.valueOf(637621500.21404958690340780691486);
+		Assert.assertTrue(binomioTest.evaluarMSucesivasConDesarrollo(1)==resultado);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarMSucesivaGrado50ConDesarrollo: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado100ConDesarrolloDePolinomio(){
+		BinomioNewton binomioTest = new BinomioNewton(100,1,0.5);
+		long start = System.nanoTime();
+		Double resultado = Double.valueOf(406561177535215300.0);
+		Assert.assertTrue(binomioTest.evaluarMSucesivasConDesarrollo(1) == resultado);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarMSucesivaGrado100ConDesarrollo: " + tiempo + " ns");
 	}
 }

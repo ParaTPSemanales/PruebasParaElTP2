@@ -36,7 +36,7 @@ public class ProgDinTest {
 		long start = System.nanoTime();		
 		Assert.assertTrue(polinomioTest.evaluarProgDinamica(2)==7845136);		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarMSucesivaGrado20: " + tiempo + " ns");
+		System.out.println("[Polinomio EvaluarProgDinamicaGrado20: " + tiempo + " ns");
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ public class ProgDinTest {
 		long start = System.nanoTime();
 		Assert.assertTrue(polinomioTest.evaluarProgDinamica(-1) == 23);		
 		long tiempo = System.nanoTime()- start;
-		System.out.println("[PolinomioEvaluarProgDinamicaGrado50: " + tiempo + " ns");		
+		System.out.println("[Polinomio EvaluarProgDinamicaGrado50: " + tiempo + " ns");		
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class ProgDinTest {
 		long start = System.nanoTime();
 		Assert.assertTrue(polinomioTest.evaluarProgDinamica(-1) == -22);		
 		long tiempo = System.nanoTime() - start;
-		System.out.println("[PolinomioEvaluarProgDinamicaGrado100: " + tiempo + " ns");		
+		System.out.println("[Polinomio EvaluarProgDinamicaGrado100: " + tiempo + " ns");		
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class ProgDinTest {
 			long start = System.nanoTime();
 			Assert.assertTrue(bn.evaluarProgDinamica(3) == 1000);			
 			long tiempo = System.nanoTime() - start;
-			System.out.println("[PolinomioEvaluarProgDinamicaGrado100: " + tiempo + " ns");
+			System.out.println("[BinomioEvaluarProgDinamicaGrado3: " + tiempo + " ns");
 	 }
 	
 	//TEST BINOMIO DE NEWTON
