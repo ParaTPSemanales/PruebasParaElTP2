@@ -11,9 +11,9 @@ public class Polinomio {
 
 	//CONSTRUCTORES
 	public Polinomio(int grado) {
-
-		double[] coeficientes = new double[grado];
-		for (int i = 0; i < grado; i++)
+		this.grado = grado;
+		double[] coeficientes = new double[grado+1];
+		for (int i = 0; i <= grado; i++)
 			coeficientes[i] = 1;
 		this.setCoeficientes(coeficientes);
 	}
@@ -28,10 +28,8 @@ public class Polinomio {
 	public double evaluarMSucesivas(double x) {
 
 		double retorno = 0;
-
 		for (int i = 0; i <= this.getGrado(); i++)
 			retorno += this.getCoeficientes()[i] * potenciaPorMult(x, this.getGrado() - i);// O(n2)
-
 		return retorno;
 	}// O(n2)
 	

@@ -73,11 +73,36 @@ public class BinomioNewton {
 		return retorno;
 	}
 	
+	public double evaluarRecursivaParConDesarrollo(double x) {
+		double retorno = 0;
+		double[] coeficientes = new double[this.getGrado()+1];		
+		coeficientes = obtenerTerminosTarta(this.getGrado()+1);
+		for (int i = 0; i <= this.getGrado(); i++) {
+			if (i % 2 != 0)
+				retorno += coeficientes[i] * potenciaRecursiva(x, this.getGrado() - i);// Impar
+			else
+				retorno += coeficientes[i] * potenciaRecursivaPar(x, this.getGrado() - i);// Par
+		} // O(n) y anidada con la recursiva es O(n2)
+		return retorno;
+	}
+	
 	public double evaluarProgDinamica(double x) {
 		double retorno = this.getX()*x + this.getB();
 		double potencia = retorno;
 		for (int i = 1; i < this.getGrado(); i++) 
 		    retorno*= potencia;
+		return retorno;
+	}
+	
+	public double evaluarProgDinamicaConDesarrollo(double x) {
+		double retorno = 0;
+		double[] coeficientes = new double[this.getGrado()+1];		
+		coeficientes = obtenerTerminosTarta(this.getGrado()+1);		
+		double potencia = 1;
+		for (int i = this.getGrado(); i >= 0; i--) {
+			retorno += coeficientes[i] * potencia;
+			potencia *= x; // O(1)
+		} // O(n)
 		return retorno;
 	}
 	
@@ -93,9 +118,28 @@ public class BinomioNewton {
 		return retorno;
 	}
 	
+	public double evaluarMejoradaConDesarrollo(double x) {
+		double[] coeficientes = new double[this.getGrado()+1];		
+		coeficientes = obtenerTerminosTarta(this.getGrado()+1);
+		double resultado = 0;
+		int i; double j;
+		for (i = this.getGrado(), j = 1; i >= 0; i--, j *= x)
+			resultado += coeficientes[i] * (j);
+		return resultado;
+	}
+	
 	public double evaluarPow(double x) {
 		double retorno = 0;
 		retorno = Math.pow((this.getX() * x) + this.getB(), this.getGrado());
+		return retorno;
+	}
+	
+	public double evaluarPowConDesarrollo(double x) {
+		double[] coeficientes = new double[this.getGrado()+1];		
+		coeficientes = obtenerTerminosTarta(this.getGrado()+1);
+		double retorno = 0;
+		for (int i = 0; i <= this.getGrado(); i++)
+			retorno += coeficientes[i] * Math.pow(x, this.getGrado() - i);
 		return retorno;
 	}
 	

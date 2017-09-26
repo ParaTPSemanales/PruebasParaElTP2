@@ -9,6 +9,20 @@ import org.junit.Test;
 public class MSucesivasTest {
 
 	@Test
+	public void queEvalueBienPolinomioValorFlotante(){
+		double[] coeficientes = {13,15,15};
+		Polinomio  polinomioTest = new Polinomio(2,coeficientes);
+		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6.5)==661.75);
+	}
+	
+	@Test
+	public void queEvalueBienPolinomioGrado0(){
+		double[] coeficientes = {15};
+		Polinomio  polinomioTest = new Polinomio(0,coeficientes);
+		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6666666)==15);
+	}
+		
+	@Test
 	public void queEvalueBienPolinomioGrado1(){		
 		double[] coeficientes = {15,3};
 		Polinomio  polinomioTest = new Polinomio(1,coeficientes);
@@ -38,21 +52,7 @@ public class MSucesivasTest {
 		long tiempo = System.nanoTime() - start;
 		System.out.println("[PolinomioEvaluarMSucesivaGrado20: " + tiempo + " ns");
 	}
-	
-	@Test
-	public void queEvalueBienPolinomioGrado0(){
-		double[] coeficientes = {15};
-		Polinomio  polinomioTest = new Polinomio(0,coeficientes);
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6666666)==15);
-	}
-	
-	@Test
-	public void queEvalueBienPolinomioValorFlotante(){
-		double[] coeficientes = {13,15,15};
-		Polinomio  polinomioTest = new Polinomio(2,coeficientes);
-		Assert.assertTrue(polinomioTest.evaluarMSucesivas(6.5)==661.75);
-	}
-	
+		
 	@Test
 	public void queEvaluePolinomioGrado50() {
 		
@@ -73,6 +73,24 @@ public class MSucesivasTest {
 		Assert.assertTrue(polinomioTest.evaluarMSucesivas(-1) == -22);		
 		long tiempo = System.nanoTime() - start;
 		System.out.println("[PolinomioEvaluarMSucesivaGrado100: " + tiempo + " ns");		
+	}
+	
+	@Test
+	public void queEvaluePolinomioGrado1000() {
+		Polinomio  polinomioTest = new Polinomio(1000);
+		long start = System.nanoTime();
+		Assert.assertTrue(polinomioTest.evaluarMSucesivas(1) == 1001);		
+		long tiempo = System.nanoTime() - start;
+		System.out.println("[PolinomioEvaluarMSucesivaGrado1000: " + tiempo + " ns");		
+	}
+	
+	@Test
+	public void queEvaluePolinomioGrado10000() {
+		Polinomio  polinomioTest = new Polinomio(10000);
+		long start = System.nanoTime();
+		Assert.assertTrue(polinomioTest.evaluarMSucesivas(1) == 10001);		
+		long tiempo = System.nanoTime() - start;
+		System.out.println("[PolinomioEvaluarMSucesivaGrado10000: " + tiempo + " ns");		
 	}
 
 	//TEST BINOMIO DE NEWTON
@@ -101,6 +119,26 @@ public class MSucesivasTest {
 		Assert.assertTrue(binomioTest.evaluarMSucesivas(1)==406561177535215237.39727970756704);
 		long tiempo = System.nanoTime() - start; 
 		System.out.println("[BinomioEvaluarMSucesivaGrado100: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado1000(){
+		BinomioNewton binomioTest = new BinomioNewton(1000,1,0.5);
+		long start = System.nanoTime();
+		//Assert.assertTrue(binomioTest.evaluarMSucesivas(1)==406561177535215237.39727970756704);
+		binomioTest.evaluarMSucesivas(1);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarMSucesivaGrado1000: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado10000(){
+		BinomioNewton binomioTest = new BinomioNewton(10000,1,0.5);
+		long start = System.nanoTime();
+		//Assert.assertTrue(binomioTest.evaluarMSucesivas(1)==406561177535215237.39727970756704);
+		binomioTest.evaluarMSucesivas(1);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarMSucesivaGrado10000: " + tiempo + " ns");
 	}
 	
 	//TEST BINOMIO DE NEWTON DESARROLLANDO POLINOMIO
@@ -132,5 +170,23 @@ public class MSucesivasTest {
 		Assert.assertTrue(binomioTest.evaluarMSucesivasConDesarrollo(1) == resultado);
 		long tiempo = System.nanoTime() - start; 
 		System.out.println("[BinomioEvaluarMSucesivaGrado100ConDesarrollo: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado1000ConDesarrolloDePolinomio(){
+		BinomioNewton binomioTest = new BinomioNewton(1000,1,0.5);
+		long start = System.nanoTime();
+		binomioTest.evaluarMSucesivasConDesarrollo(1);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarMSucesivaGrado1000ConDesarrollo: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado10000ConDesarrolloDePolinomio(){
+		BinomioNewton binomioTest = new BinomioNewton(10000,1,0.5);
+		long start = System.nanoTime();
+		binomioTest.evaluarMSucesivasConDesarrollo(1);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarMSucesivaGrado10000ConDesarrollo: " + tiempo + " ns");
 	}
 }

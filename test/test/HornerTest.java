@@ -68,6 +68,24 @@ public class HornerTest {
 		System.out.println("[PolinomioEvaluarMHornerGrado100: " + tiempo + " ns");		
 	}
 	
+	@Test
+	public void queEvaluePolinomioGrado1000() {
+		Polinomio  polinomioTest = new Polinomio(1000);
+		long start = System.nanoTime();
+		Assert.assertTrue(polinomioTest.evaluarHorner(1) == 1001);		
+		long tiempo = System.nanoTime() - start;
+		System.out.println("[PolinomioEvaluarHornerGrado1000: " + tiempo + " ns");		
+	}
+	
+	@Test
+	public void queEvaluePolinomioGrado10000() {
+		Polinomio  polinomioTest = new Polinomio(10000);
+		long start = System.nanoTime();
+		Assert.assertTrue(polinomioTest.evaluarHorner(1) == 10001);		
+		long tiempo = System.nanoTime() - start;
+		System.out.println("[PolinomioEvaluarHornerGrado10000: " + tiempo + " ns");		
+	}
+	
 	//TEST BINOMIO DE NEWTON
 	@Test
 	public void queEvalueBienBinomioGrado20(){
@@ -97,6 +115,26 @@ public class HornerTest {
 		Assert.assertTrue(binomioTest.evaluarHorner(1) == resultado);
 		long tiempo = System.nanoTime() - start; 
 		System.out.println("[BinomioEvaluarHorner100: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado1000(){
+		BinomioNewton binomioTest = new BinomioNewton(1000,1,0.5);
+		long start = System.nanoTime();
+		//Assert.assertTrue(binomioTest.evaluarHorner(1)==406561177535215237.39727970756704);
+		binomioTest.evaluarHorner(1);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarHornerGrado1000: " + tiempo + " ns");
+	}
+	
+	@Test
+	public void queEvalueBienBinomioGrado10000(){
+		BinomioNewton binomioTest = new BinomioNewton(10000,1,0.5);
+		long start = System.nanoTime();
+		//Assert.assertTrue(binomioTest.evaluarHorner(1)==406561177535215237.39727970756704);
+		binomioTest.evaluarHorner(1);
+		long tiempo = System.nanoTime() - start; 
+		System.out.println("[BinomioEvaluarHornerGrado10000: " + tiempo + " ns");
 	}
 	
 }
