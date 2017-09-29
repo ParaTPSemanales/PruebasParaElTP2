@@ -8,7 +8,21 @@ import org.junit.Test;
 import utilidades.BinomioNewton;
 
 public class HornerTest {
-
+/*
+ 	@Test
+	public void queEvalueBienPolinomioGrado0(){
+		double[] coeficientes = {15};
+		Polinomio  polinomioTest = new Polinomio(0,coeficientes);
+		Assert.assertTrue(polinomioTest.evaluarHorner(6666666)==15);
+	}
+	
+	@Test
+	public void queEvalueBienPolinomioValorFlotante(){
+		double[] coeficientes = {13,15,15};
+		Polinomio  polinomioTest = new Polinomio(2,coeficientes);
+		Assert.assertTrue(polinomioTest.evaluarHorner(6.5)==661.75);
+	}	
+	
 	@Test
 	public void queEvalueBienPolinomioGrado1(){		
 		double[] coeficientes = {15,3};		 
@@ -32,21 +46,7 @@ public class HornerTest {
 		long tiempo = System.nanoTime() - start;
 		System.out.println("[PolinomioEvaluarMHornerGrado20: " + tiempo + " ns");
 	}
-	
-	@Test
-	public void queEvalueBienPolinomioGrado0(){
-		double[] coeficientes = {15};
-		Polinomio  polinomioTest = new Polinomio(0,coeficientes);
-		Assert.assertTrue(polinomioTest.evaluarHorner(6666666)==15);
-	}
-	
-	@Test
-	public void queEvalueBienPolinomioValorFlotante(){
-		double[] coeficientes = {13,15,15};
-		Polinomio  polinomioTest = new Polinomio(2,coeficientes);
-		Assert.assertTrue(polinomioTest.evaluarHorner(6.5)==661.75);
-	}	
-	
+		
 	@Test
 	public void queEvaluePolinomioGrado50() {		
 		double[] coeficientes = {1,2,3,4,5,6,4,3,2,1,3,4,6,7,8,9,7,6,5,44,33,2,1,2,3,4,55,66,7,88,76,6,55,44,3,2,1,2,3,-4,5,66,-1,-1,-77,-123,12,2,23,-1,21};
@@ -85,7 +85,7 @@ public class HornerTest {
 		long tiempo = System.nanoTime() - start;
 		System.out.println("[PolinomioEvaluarHornerGrado10000: " + tiempo + " ns");		
 	}
-	
+	*/
 	//TEST BINOMIO DE NEWTON
 	@Test
 	public void queEvalueBienBinomioGrado20(){
